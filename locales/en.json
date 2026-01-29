@@ -199,7 +199,8 @@
         "setting_on_password": "Setting Password",
         "getting_code": "Getting Verification Code, Will Try in 60s",
         "human_verify_error": "Can't verify the user is human. Retrying...",
-        "max_retries_reached": "Maximum retry attempts reached. Registration failed."
+        "email_create_failed": "Email creation failed",
+        "email_setup_failed": "Email setup error: {error}"
     },
     "auth": {
         "title": "Cursor Auth Manager",
@@ -261,6 +262,8 @@
         "create_success": "Email Created Successfully",
         "create_failed": "Failed to Create Email",
         "create_error": "Email Creation Error: {error}",
+        "browser_start_error": "Browser start error: {error}",
+        "local_blocked_domains_loaded": "Loaded blocked domains from local file",
         "refreshing": "Refreshing Email",
         "refresh_success": "Email Refreshed Successfully",
         "refresh_error": "Email Refresh Error: {error}",
@@ -294,8 +297,8 @@
         "no_display_found": "No display found. Make sure X server is running.",
         "try_export_display": "Try: export DISPLAY=:0",
         "extension_load_error": "Extension Load Error: {error}",
-        "make_sure_chrome_chromium_is_properly_installed": "Make sure Chrome/Chromium is properly installed",
-        "try_install_chromium": "Try: sudo apt install chromium-browser"
+        "browser_start_error": "Browser start error: {error}",
+        "local_blocked_domains_loaded": "Loaded blocked domains from local file"
     },
     "update": {
         "title": "Disable Cursor Auto Update",
@@ -568,7 +571,7 @@
     },
     "oauth": {
         "authentication_button_not_found": "Authentication button not found",
-        "authentication_failed": "Authentication failed: {error}",
+        "authentication_error": "Authentication error: {error}",
         "found_cookies": "Found {count} cookies",
         "token_extraction_error": "Token extraction error: {error}",
         "authentication_successful": "Authentication successful - Email: {email}",
@@ -622,7 +625,7 @@
         "authentication_successful_getting_account_info": "Authentication successful, getting account info...",
         "warning_could_not_kill_existing_browser_processes": "Warning: Could not kill existing browser processes: {error}",
         "browser_failed_to_start": "Browser failed to start: {error}",
-        "browser_failed": "Browser failed to start: {error}",
+        "browser_failed": "Browser failed to initialize",
         "browser_failed_to_start_fallback": "Browser failed to start: {error}"
     },
     "chrome_profile": {
