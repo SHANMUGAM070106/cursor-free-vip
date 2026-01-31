@@ -578,12 +578,18 @@ def main():
                 cursor_register.main(translator)
                 print_menu()
             elif choice == "3":
-                import cursor_register_google
-                cursor_register_google.main(translator)
+                try:
+                    import cursor_register_google
+                    cursor_register_google.main(translator)
+                except Exception as e:
+                    print(f"{Fore.RED}{EMOJI['ERROR']} Google authentication failed: {str(e)}{Style.RESET_ALL}")
                 print_menu()
             elif choice == "4":
-                import cursor_register_github
-                cursor_register_github.main(translator)
+                try:
+                    import cursor_register_github
+                    cursor_register_github.main(translator)
+                except Exception as e:
+                    print(f"{Fore.RED}{EMOJI['ERROR']} GitHub authentication failed: {str(e)}{Style.RESET_ALL}")
                 print_menu()
             elif choice == "5":
                 import cursor_register_manual
@@ -641,7 +647,7 @@ def main():
                 bypass_token_limit.run(translator)
                 print_menu()
             else:
-                print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('menu.invalid_choice')}{Style.RESET_ALL}")
+                print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('menu.invalid_choice', choices=f'0-{choice_num}')}{Style.RESET_ALL}")
                 print_menu()
 
         except KeyboardInterrupt:
