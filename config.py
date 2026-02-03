@@ -55,7 +55,9 @@ def setup_config(translator=None):
             'Utils': {
                 'enabled_update_check': 'True',
                 'enabled_force_update': 'False',
-                'enabled_account_info': 'True'
+                'enabled_account_info': 'True',
+                'enabled_debug_logging': 'False',
+                'log_file_path': ''
             }
         }
 
@@ -233,6 +235,47 @@ def setup_config(translator=None):
             print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('config.config_setup_error', error=str(e)) if translator else f'Error setting up config: {str(e)}'}{Style.RESET_ALL}")
         return None
     
+    return None
+
+def get_error_message(error: Exception, translator=None) -> str:
+    """Get a user-friendly error message.
+    
+    Args:
+        error: The exception that occurred
+        translator: Optional Translator instance for translations
+        
+    Returns:
+        A formatted error message
+    """
+    error_type = type(error).__name__
+    error_msg = str(error)
+    
+    if translator:
+        return translator.get('config.error_message', error_type=error_type, error_msg=error_msg)
+    return f"[{error_type}] {error_msg}"
+
+
+def validate_config_paths(config) -> list:
+    """Validate that all configured paths exist.
+    
+    Args:
+        config: ConfigParser instance
+        
+    Returns:
+        List of invalid paths
+    """
+    invalid_paths = []
+    
+    for section in config.sections():
+        if 'Paths' in section:
+            for key, value in config.items(section):
+                if key.endswith('_path') and value:
+                    if not os.path.exists(value):
+                        invalid_paths.append(value)
+    
+    return invalid_paths
+
+
 def print_config(config, translator=None):
     """Print configuration in a readable format"""
     if not config:
