@@ -46,7 +46,12 @@
         "ru": "Russian",
         "tr": "Turkish",
         "bg": "Bulgarian",
-        "es": "Spanish"
+        "es": "Spanish",
+        "it": "Italiano",
+        "pl": "Polski",
+        "ar": "العربية",
+        "ja": "日本語",
+        "ko": "한국어"
     },
     "quit_cursor": {
         "start": "Start Quitting Cursor",
