@@ -138,7 +138,20 @@ class OAuthHandler:
             co = self._configure_browser_options(chrome_path, user_data_dir, self.selected_profile)
             
             print(f"{Fore.CYAN}{EMOJI['INFO']} {self.translator.get('oauth.starting_browser', path=chrome_path) if self.translator else f'Starting browser at: {chrome_path}'}{Style.RESET_ALL}")
-            self.browser = ChromiumPage(co)
+            
+            try:
+                self.browser = ChromiumPage(co)
+                # Test browser connection
+                self.browser.get('about:blank')
+                time.sleep(1)
+            except Exception as browser_error:
+                print(f"{Fore.YELLOW}{EMOJI['WARNING']} Browser connection failed, trying with different options...{Style.RESET_ALL}")
+                # Try with minimal options
+                co_minimal = ChromiumOptions()
+                co_minimal.set_paths(browser_path=chrome_path)
+                co_minimal.set_argument('--no-sandbox')
+                co_minimal.set_argument('--disable-dev-shm-usage')
+                self.browser = ChromiumPage(co_minimal)
             
             # Verify browser launched successfully
             if not self.browser:
@@ -148,7 +161,7 @@ class OAuthHandler:
             return True
             
         except Exception as e:
-            print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('oauth.browser_setup_failed', error=str(e)) if self.translator else f'Browser setup failed: {str(e)}'}{Style.RESET_ALL}")
+            print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('oauth.browser_setup_failed', error=str(e)) if self.translator else 'Browser setup failed: ' + str(e)}{Style.RESET_ALL}")
             if "DevToolsActivePort file doesn't exist" in str(e):
                 print(f"{Fore.YELLOW}{EMOJI['INFO']} {self.translator.get('oauth.try_running_without_sudo_admin') if self.translator else 'Try running without sudo/administrator privileges'}{Style.RESET_ALL}")
             elif "Chrome failed to start" in str(e):
@@ -269,11 +282,15 @@ class OAuthHandler:
             co.set_argument('--no-first-run')
             co.set_argument('--no-default-browser-check')
             co.set_argument('--disable-gpu')
+            co.set_argument('--disable-web-security')
+            co.set_argument('--disable-features=VizDisplayCompositor')
+            co.set_argument('--disable-blink-features=AutomationControlled')
+            co.set_argument('--disable-extensions')
+            co.set_argument('--no-sandbox')
+            co.set_argument('--disable-dev-shm-usage')
             
             # Platform-specific options
             if sys.platform.startswith('linux'):
-                co.set_argument('--no-sandbox')
-                co.set_argument('--disable-dev-shm-usage')
                 co.set_argument('--disable-setuid-sandbox')
             elif sys.platform == 'darwin':
                 co.set_argument('--disable-gpu-compositing')
@@ -294,7 +311,6 @@ class OAuthHandler:
             
             # Setup browser
             if not self.setup_browser():
-                print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('oauth.browser_failed') if self.translator else 'Browser failed to initialize'}{Style.RESET_ALL}")
                 return False, None
             
             # Navigate to auth URL
@@ -303,11 +319,19 @@ class OAuthHandler:
                 self.browser.get("https://authenticator.cursor.sh/sign-up")
                 time.sleep(get_random_wait_time(self.config, 'page_load_wait'))
                 
-                # Look for Google auth button
+                # Look for Google auth button with updated selectors
                 selectors = [
-                    "//a[contains(@href,'GoogleOAuth')]",
-                    "//a[contains(@class,'auth-method-button') and contains(@href,'GoogleOAuth')]",
-                    "(//a[contains(@class,'auth-method-button')])[1]"  # First auth button as fallback
+                    "//button[contains(text(), 'Continue with Google')]",
+                    "//a[contains(text(), 'Continue with Google')]",
+                    "//button[contains(@class, 'auth') and contains(., 'Google')]",
+                    "//a[contains(@class, 'auth') and contains(., 'Google')]",
+                    "//div[contains(@class, 'auth')]//button[contains(., 'Google')]",
+                    "//div[contains(@class, 'auth')]//a[contains(., 'Google')]",
+                    "css:button[class*='auth'][class*='google'], a[class*='auth'][class*='google']",
+                    "css:button:has-text('Google'), a:has-text('Google')",
+                    "css:[data-testid*='google'], [data-cy*='google']",
+                    "//button[1]",  # First button as fallback
+                    "//a[1]"       # First link as fallback
                 ]
                 
                 auth_btn = None
@@ -348,7 +372,8 @@ class OAuthHandler:
                 return True, auth_info
                 
             except Exception as e:
-                print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('oauth.authentication_error', error=str(e)) if self.translator else f'Authentication error: {str(e)}'}{Style.RESET_ALL}")
+                error_msg = str(e) if str(e) else 'Unknown authentication error'
+                print(f"{Fore.RED}{EMOJI['ERROR']} Authentication error: {error_msg}{Style.RESET_ALL}")
                 return False, None
             finally:
                 try:
@@ -459,7 +484,6 @@ class OAuthHandler:
             
             # Setup browser
             if not self.setup_browser():
-                print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('oauth.browser_failed')}{Style.RESET_ALL}")
                 return False, None
             
             # Navigate to auth URL
@@ -468,11 +492,19 @@ class OAuthHandler:
                 self.browser.get("https://authenticator.cursor.sh/sign-up")
                 time.sleep(get_random_wait_time(self.config, 'page_load_wait'))
                 
-                # Look for GitHub auth button
+                # Look for GitHub auth button with updated selectors
                 selectors = [
-                    "//a[contains(@href,'GitHubOAuth')]",
-                    "//a[contains(@class,'auth-method-button') and contains(@href,'GitHubOAuth')]",
-                    "(//a[contains(@class,'auth-method-button')])[2]"  # Second auth button as fallback
+                    "//button[contains(text(), 'Continue with GitHub')]",
+                    "//a[contains(text(), 'Continue with GitHub')]",
+                    "//button[contains(@class, 'auth') and contains(., 'GitHub')]",
+                    "//a[contains(@class, 'auth') and contains(., 'GitHub')]",
+                    "//div[contains(@class, 'auth')]//button[contains(., 'GitHub')]",
+                    "//div[contains(@class, 'auth')]//a[contains(., 'GitHub')]",
+                    "css:button[class*='auth'][class*='github'], a[class*='auth'][class*='github']",
+                    "css:button:has-text('GitHub'), a:has-text('GitHub')",
+                    "css:[data-testid*='github'], [data-cy*='github']",
+                    "//button[2]",  # Second button as fallback
+                    "//a[2]"       # Second link as fallback
                 ]
                 
                 auth_btn = None
@@ -502,7 +534,8 @@ class OAuthHandler:
                 return True, auth_info
                 
             except Exception as e:
-                print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('oauth.authentication_error', error=str(e)) if self.translator else f'Authentication error: {str(e)}'}{Style.RESET_ALL}")
+                error_msg = str(e) if str(e) else 'Unknown authentication error'
+                print(f"{Fore.RED}{EMOJI['ERROR']} Authentication error: {error_msg}{Style.RESET_ALL}")
                 return False, None
             finally:
                 try:
@@ -777,7 +810,7 @@ class OAuthHandler:
                     missing.append("email")
                 if not token:
                     missing.append("token")
-                print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('oauth.missing_authentication_data', data=', '.join(missing)) if self.translator else f'Missing authentication data: {", ".join(missing)}'}{Style.RESET_ALL}")
+                print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('oauth.missing_authentication_data', data=', '.join(missing)) if self.translator else 'Missing authentication data: ' + ', '.join(missing)}{Style.RESET_ALL}")
                 return False, None
             
         except Exception as e:
@@ -833,33 +866,37 @@ def main(auth_type, translator=None):
         auth_type (str): Type of authentication ('google' or 'github')
         translator: Translator instance for internationalization
     """
-    handler = OAuthHandler(translator, auth_type)
-    
-    if auth_type.lower() == 'google':
-        print(f"{Fore.CYAN}{EMOJI['INFO']} {translator.get('oauth.google_start') if translator else 'Google start'}{Style.RESET_ALL}")
-        success, auth_info = handler.handle_google_auth()
-    elif auth_type.lower() == 'github':
-        print(f"{Fore.CYAN}{EMOJI['INFO']} {translator.get('oauth.github_start') if translator else 'Github start'}{Style.RESET_ALL}")
-        success, auth_info = handler.handle_github_auth()
-    else:
-        print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('oauth.invalid_authentication_type') if translator else 'Invalid authentication type'}{Style.RESET_ALL}")
-        return False
+    try:
+        handler = OAuthHandler(translator, auth_type)
         
-    if success and auth_info:
-        # Update Cursor authentication
-        auth_manager = CursorAuth(translator)
-        if auth_manager.update_auth(
-            email=auth_info["email"],
-            access_token=auth_info["token"],
-            refresh_token=auth_info["token"]
-        ):
-            print(f"{Fore.GREEN}{EMOJI['SUCCESS']} {translator.get('oauth.auth_update_success') if translator else 'Auth update success'}{Style.RESET_ALL}")
-            # Close the browser after successful authentication
-            if handler.browser:
-                handler.browser.quit()
-                print(f"{Fore.CYAN}{EMOJI['INFO']} {translator.get('oauth.browser_closed') if translator else 'Browser closed'}{Style.RESET_ALL}")
-            return True
+        if auth_type.lower() == 'google':
+            print(f"{Fore.CYAN}{EMOJI['INFO']} {translator.get('oauth.google_start') if translator else 'Google start'}{Style.RESET_ALL}")
+            success, auth_info = handler.handle_google_auth()
+        elif auth_type.lower() == 'github':
+            print(f"{Fore.CYAN}{EMOJI['INFO']} {translator.get('oauth.github_start') if translator else 'Github start'}{Style.RESET_ALL}")
+            success, auth_info = handler.handle_github_auth()
         else:
-            print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('oauth.auth_update_failed') if translator else 'Auth update failed'}{Style.RESET_ALL}")
+            print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('oauth.invalid_authentication_type') if translator else 'Invalid authentication type'}{Style.RESET_ALL}")
+            return False
             
-    return False 
+        if success and auth_info:
+            # Update Cursor authentication
+            auth_manager = CursorAuth(translator)
+            if auth_manager.update_auth(
+                email=auth_info["email"],
+                access_token=auth_info["token"],
+                refresh_token=auth_info["token"]
+            ):
+                print(f"{Fore.GREEN}{EMOJI['SUCCESS']} {translator.get('oauth.auth_update_success') if translator else 'Auth update success'}{Style.RESET_ALL}")
+                # Close the browser after successful authentication
+                if handler.browser:
+                    handler.browser.quit()
+                    print(f"{Fore.CYAN}{EMOJI['INFO']} {translator.get('oauth.browser_closed') if translator else 'Browser closed'}{Style.RESET_ALL}")
+                return True
+            else:
+                print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('oauth.auth_update_failed') if translator else 'Auth update failed'}{Style.RESET_ALL}")
+                
+        return False
+    except Exception as e:
+        print(f"{Fore.RED}{EMOJI['ERROR']} Authentication process failed: {str(e)}{Style.RESET_ALL}")
+        return False 
