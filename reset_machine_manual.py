@@ -777,6 +777,26 @@ class MachineIDResetter:
             return False
         except Exception as e:
             print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('reset.process_error', error=str(e))}{Style.RESET_ALL}")
+            
+            # 添加解决方案提示
+            if "文件未找到" in str(e) or "not found" in str(e).lower():
+                solution_msg = """
+🔄 解决方案 | Solution:
+如果您的 Cursor 安装在其他路径（非默认路径），请按以下步骤操作：
+
+1. 找到您实际安装 Cursor 的路径（例如：D:\\cursor）
+2. 将整个 Cursor 文件夹复制到默认路径缺失的部分：C:\\Users\\86157\\AppData\\Local\\Programs\\
+3. 重新运行此脚本执行重置操作
+4. 重置成功后，可以删除复制到默认路径的 Cursor 文件夹
+
+If your Cursor is installed in a non-default path, please:
+1. Find your actual Cursor installation path (e.g., D:\\cursor)
+2. Copy the entire Cursor folder to the missing parts of the default path: C:\\Users\\86157\\AppData\\Local\\Programs\\
+3. Re-run this script to perform reset
+4. After successful reset, you can delete the copied Cursor folder from default path
+"""
+                print(f"{Fore.YELLOW}{solution_msg}{Style.RESET_ALL}")
+            
             return False
 
     def update_machine_id_file(self, machine_id: str) -> bool:
