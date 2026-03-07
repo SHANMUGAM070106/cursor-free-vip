@@ -2,6 +2,17 @@ import os
 import sys
 import platform
 import random
+import datetime
+
+
+def log_step(step_name: str) -> None:
+    """Print a timestamped log message.
+    
+    Args:
+        step_name: Description of the current step
+    """
+    timestamp = datetime.datetime.now().strftime("%H:%M:%S")
+    print(f"[{timestamp}] {step_name}")
 
 def get_user_documents_path():
     """Get user documents path"""
