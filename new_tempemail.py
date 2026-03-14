@@ -46,7 +46,7 @@ class NewTempEmail:
                 with open(local_path, 'r', encoding='utf-8') as f:
                     domains = [line.strip() for line in f.readlines() if line.strip()]
                 if self.translator:
-                    print(f"{Fore.CYAN}ℹ️  {self.translator.get('email.local_blocked_domains_loaded', count=len(domains))}{Style.RESET_ALL}")
+                    print(f"{Fore.CYAN}ℹ️  {self.translator.get('email.local_blocked_domains_loaded') if self.translator.get('email.local_blocked_domains_loaded') else 'Loaded blocked domains from local file'}{Style.RESET_ALL}")
                 else:
                     print(f"{Fore.CYAN}ℹ️ 已从本地加载 {len(domains)} 个被屏蔽的域名{Style.RESET_ALL}")
                 return domains
@@ -148,10 +148,7 @@ class NewTempEmail:
             self.page = ChromiumPage(co)
             return True
         except Exception as e:
-            if self.translator:
-                print(f"{Fore.RED}❌ {self.translator.get('email.browser_start_error')}: {str(e)}{Style.RESET_ALL}")
-            else:
-                print(f"{Fore.RED}❌ 启动浏览器失败: {str(e)}{Style.RESET_ALL}")
+            print(f"{Fore.RED}❌ Browser start error: {str(e)}{Style.RESET_ALL}")
             
             if sys.platform == "linux":
                 print(f"{Fore.YELLOW}ℹ️ {self.translator.get('email.make_sure_chrome_chromium_is_properly_installed') if self.translator else 'Make sure Chrome/Chromium is properly installed'}{Style.RESET_ALL}")
@@ -212,10 +209,7 @@ class NewTempEmail:
             return None
             
         except Exception as e:
-            if self.translator:
-                print(f"{Fore.RED}❌ {self.translator.get('email.create_error')}: {str(e)}{Style.RESET_ALL}")
-            else:
-                print(f"{Fore.RED}❌ 创建邮箱出错: {str(e)}{Style.RESET_ALL}")
+            print(f"{Fore.RED}❌ Email Creation Error: {str(e)}{Style.RESET_ALL}")
             return None
             
     def close(self):
